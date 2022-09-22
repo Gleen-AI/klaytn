@@ -33,6 +33,10 @@ contract HelixProtocol {
         return protocol_name;
     }
 
+    function get_balance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
     function getSystemAdmin() public view returns (address) {
         return sys_admin;
     }
@@ -41,6 +45,14 @@ contract HelixProtocol {
 
     function withdraw() public onlyAdmin {
         payable(msg.sender).transfer(address(this).balance);
+    }
+
+    // only to ambassador
+    function transferToAmbassadors(address ambassador_address)
+        public
+        onlyAdmin
+    {
+        payable(ambassador_address).transfer(4 * 1000000000 * 1000000000);
     }
 
     function add_ambassador_rewards(

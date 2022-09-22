@@ -5,11 +5,15 @@ const { API_URL, KLAYTN_URL, PRIVATE_KEY } = process.env
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
     solidity: "0.8.9",
-    defaultNetwork: "rinkeby_arbitrum",
+    defaultNetwork: "hardhat",
     networks: {
         hardhat: {},
         rinkeby_arbitrum: {
             url: process.env.API_URL,
+            accounts: [`0x${process.env.PRIVATE_KEY}`],
+        },
+        rinkeby: {
+            url: process.env.RAPI_URL,
             accounts: [`0x${process.env.PRIVATE_KEY}`],
         },
         klaytn: {
